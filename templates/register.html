@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block contant %}
+    <div class="container">
+        <h3 class="text-center">Register Now</h3>
+        <form method="POST" action="{{ url_for('index') }}">
+            {{form.hidden_tag()}}
+            <div class="text-center mt-3">
+                {{ form.username.label(class="form-control-label") }}
+                {% if form.username.errors %}
+                {{ form.username.label(class="form-control-label is-invalid") }}
+                    {% for error in form.username.errors %}
+                        <span class="text-danger">{{error}}</span>
+                    {% endfor %}
+                {% else %}
+                {{ form.username(class="form-control mt-2") }}
+                {% endif %}
+            </div>
+            <div class="text-center mt-3">
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control mt-2") }}
+            </div>
+            <div class="text-center mt-3">
+                {{ form.password.label(class="form-control-label") }}
+                {{ form.password(class="form-control mt-2") }}
+            </div>
+            <div class="text-center mt-3">
+                {{ form.confirm_password.label(class="form-control-label") }}
+                {{ form.confirm_password(class="form-control mt-2") }}
+            </div>
+            <div class="text-center mt-3">
+                {{ form.submit(class="btn btn-success mt-2") }}
+            </div>
+        </form>
+    </div>
+{% endblock contant %}
