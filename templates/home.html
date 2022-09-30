@@ -1,1 +1,23 @@
-{% {% extends 'templates/base.html' %} %}
+{% extends "base.html" %}
+
+{% block contant %}
+
+<div>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div>
+        <h3><a href="{{ url_for('index') }}">Register now</a></h3>
+    </div>
+    <div>
+        <h3>Already have an account! <a href="">Log in</a></h3>
+    </div>
+</div>
+
+{% endblock contant %}
