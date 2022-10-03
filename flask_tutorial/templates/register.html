@@ -1,8 +1,17 @@
 {% extends "base.html" %}
+
+{% block navbar_options %}
+{% endblock navbar_options %}
+{% block register %}
+{% endblock register %}
+{% block login %}
+<a class="navbar-brand" href="{{ url_for("login") }}">Login</a>
+{% endblock login %}
+
 {% block contant %}
     <div class="container">
         <h3 class="text-center">Register Now</h3>
-        <form method="POST" action="{{ url_for('index') }}" novalidate>
+        <form method="POST" action="{{ url_for('register') }}" novalidate>
             {{form.hidden_tag()}}
             <div class="text-center mt-3">
                 {{ form.username.label(class="form-control-label") }}

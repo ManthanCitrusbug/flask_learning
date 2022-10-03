@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block contant %}
+
+<div>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="container mt-5">
+        <div>
+            <h2>{{current_user.username}}</h2>
+            <h3>{{current_user.email}}</h3>
+            <div class="mt-5 text-left">
+                {% for post in posts %}
+                    <h3 class="mx-5">{{ post.title }}</h3>
+                    <p class="mx-5">{{ post.discription }}</p>
+                    <a href="{{ url_for('update_post', post_id=post.id) }}" class="btn btn-info mx-5">Update</a>
+                    <a href="{{ url_for('delete_post', post_id=post.id) }}" class="btn btn-danger">Delete</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock contant %}
