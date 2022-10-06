@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block contant %}
+
+<div class="m-5">
+    <img src="{{ url_for('static', filename='images/'+post.image) }}" style="width: 600px; height: 500px">
+    <h1>
+        {{post.title}}
+    </h1>
+    <h2 class="ml-5">{{post.discription}}</h2>
+    <a class="btn btn-secondary" href="{{ url_for('user.home') }}">Back</a>
+</div>
+
+{% endblock contant %}

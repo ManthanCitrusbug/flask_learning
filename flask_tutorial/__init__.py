@@ -10,5 +10,8 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
+from flask_tutorial.user.routes import user
+from flask_tutorial.posts.routes import posts
 
-from flask_tutorial import routes
+app.register_blueprint(user)
+app.register_blueprint(posts)

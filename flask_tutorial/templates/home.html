@@ -18,12 +18,39 @@
             <h2>{{current_user.username}}</h2>
             <h3>{{current_user.email}}</h3>
             <div class="mt-5 text-left">
-                {% for post in posts %}
-                    <h3 class="mx-5">{{ post.title }}</h3>
-                    <p class="mx-5">{{ post.discription }}</p>
-                    <a href="{{ url_for('update_post', post_id=post.id) }}" class="btn btn-info mx-5">Update</a>
-                    <a href="{{ url_for('delete_post', post_id=post.id) }}" class="btn btn-danger">Delete</a>
+                {% for post in posts.items %}
+                    <div class="container">
+                        <div class="d-flex">
+                            <div>
+                                <img src="{{ url_for('static', filename='images/'+post.image) }}" alt="">
+                            </div>
+                            <div>
+                                <h3>{{ post.title }}</h3>
+                                <p>{{ post.discription }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="{{ url_for('posts.update_post', post_id=post.id) }}" class="btn btn-info">Update</a>
+                            <a href="{{ url_for('posts.detail', post_id=post.id) }}" class="btn btn-warning">Detail</a>
+                            <a href="{{ url_for('posts.delete_post', post_id=post.id) }}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
                 {% endfor %}
+                
+                <div class="mt-5">
+                    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+                        {% if page_num %}
+                            {% if posts.page == page_num %}
+                                <a href="{{ url_for('user.home', page=page_num) }}" class="btn btn-info">{{page_num}}</a>
+                            {% else %}
+                                <a href="{{ url_for('user.home', page=page_num) }}" class="btn btn-outline-info">{{page_num}}</a>
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
             </div>
         </div>
     </div>

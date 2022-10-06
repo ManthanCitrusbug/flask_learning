@@ -5,13 +5,13 @@
 {% block register %}
 {% endblock register %}
 {% block login %}
-<a class="navbar-brand" href="{{ url_for("login") }}">Login</a>
+<a class="navbar-brand" href="{{ url_for("user.login") }}">Login</a>
 {% endblock login %}
 
 {% block contant %}
     <div class="container">
         <h3 class="text-center">Register Now</h3>
-        <form method="POST" action="{{ url_for('register') }}" novalidate>
+        <form method="POST" action="{{ url_for('user.register') }}" novalidate>
             {{form.hidden_tag()}}
             <div class="text-center mt-3">
                 {{ form.username.label(class="form-control-label") }}
@@ -76,6 +76,15 @@
                 </div>
                 <!-- {{ form.confirm_password.label(class="form-control-label") }}
                 {{ form.confirm_password(class="form-control mt-2") }} -->
+            </div>
+            <div class="text-center mt-3">
+                {{ form.profile_picture.label(class="form-control-label w-50") }}
+                {{ form.profile_picture(class="form-control-file mt-2 m-auto w-50") }}
+                {% if form.profile_picture.errors %}
+                    {% for error in form.profile_picture.errors %}
+                        <span class="text-danger">{{error}}</span><br>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="text-center mt-3">
                 {{ form.submit(class="btn btn-success mt-2") }}
